@@ -1,15 +1,8 @@
-# 6.00x Problem Set 5
-#
-# Part 1 - HAIL CAESAR!
-
 import string
 import random
 
 WORDLIST_FILENAME = "words.txt"
 
-# -----------------------------------
-# Helper code
-# (you don't need to understand this helper code)
 def loadWords():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
@@ -82,14 +75,6 @@ def getStoryString():
     """
     return open("story.txt", "r").read()
 
-
-# (end of helper code)
-# -----------------------------------
-
-
-#
-# Problem 1: Encryption
-#
 def buildCoder(shift):
     """
     Returns a dict that can apply a Caesar cipher to a letter.
@@ -180,10 +165,5 @@ def decryptStory():
     wordList = loadWords()
     return applyShift(story,findBestShift(wordList,story))
 
-#
-# Build data structures used for entire session and run encryption
-#
-
 if __name__ == '__main__':
-    wordList = loadWords()
     decryptStory()
