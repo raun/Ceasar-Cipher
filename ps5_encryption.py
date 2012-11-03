@@ -121,8 +121,15 @@ def applyCoder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    ### TODO.
-    
+    res=''
+    for ch in text:
+        if ch in string.ascii_lowercase:
+            res = res + coder[ch]
+        elif ch in string.ascii_uppercase:
+            res = res + coder[ch]
+        else:
+            res = res + ch
+    return res
 
 def applyShift(text, shift):
     """
