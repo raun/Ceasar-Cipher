@@ -142,13 +142,8 @@ def applyShift(text, shift):
     shift: amount to shift the text (0 <= int < 26)
     returns: text after being shifted by specified amount.
     """
-    ### TODO.
-    ### HINT: This is a wrapper function.
+    return applyCoder(text,buildCoder(shift))
     
-
-#
-# Problem 2: Decryption
-#
 def findBestShift(wordList, text):
     """
     Finds a shift key that can decrypt the encoded text.
@@ -156,8 +151,21 @@ def findBestShift(wordList, text):
     text: string
     returns: 0 <= int < 26
     """
-    ### TODO
-
+    noWords=0
+    bestShift=0
+    Shift=0
+    while Shift<26:
+        decodedMessage = applyShift(text,Shift)
+        words = decodedMessage.split(" ")
+        counter = 0
+        for w in words:
+            if isWord(wordList,w)==True:
+                counter +=1
+        if counter > noWords:
+            noWords = counter
+            bestShift = Shift   
+        Shift += 1
+    return bestShift
 
 def decryptStory():
     """
@@ -168,8 +176,9 @@ def decryptStory():
 
     returns: string - story in plain text
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    story = getStoryString()
+    wordList = loadWords()
+    return applyShift(story,findBestShift(wordList,story))
 
 #
 # Build data structures used for entire session and run encryption
